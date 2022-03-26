@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>User Home</title>
+{% endblock title %}
+
+{% block content %}
+<h2 class = "text-3xl">User Home</h2>
+<br>
+<p>
+    {% if user.is_authenticated %}Hello{% if user.first_name %} {{user.first_name}}{% endif %}, please proceed to the sections you wish to work with. 
+    <br><br>
+    <form class = "" action = "{% url 'users:applications' %}">
+    <button class = "option px-6" type = "submit">My Applications</button>
+    </form>
+    <form class = "" action = "{% url 'users:recruitment' %}">
+        <button class = "option px-6" type = "submit">Recruitment</button>
+        </form>
+
+    {% else %}Hello stranger. <a href = "{% url 'users:login' %}">Log In</a> to access the website's functionality.
+    {% endif %}
+</p>
+{% endblock content %}

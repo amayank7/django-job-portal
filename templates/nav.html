@@ -1,0 +1,14 @@
+<nav class = "flex flex-col text-yellow-100 justify-around max-w-[19%] h-screen fixed">
+    <a href="{% url 'homepage' %}"><div class = "text-center flex bg-yellow-200 shadow-lg shadow-stone-700/50 hover:bg-blue-300 hover:shadow-lg hover:shadow-blue-300/30 transition rounded-2xl text-stone-700 m-8 text-3xl p-4 h-24 mr-2 justify-center place-items-center">DJOBCONNECT</div></a>
+    <a href="{% url 'homepage' %}"><div class = "text-center p-10 ml-5 hover:border-t-2 hover:border-b-2 hover:border-yellow-300 hover:text-yellow-300">HOME</div></a>
+    <a href="{% url 'jobs:job-index' %}"><div class = "text-center p-10 ml-5 hover:border-t-2 hover:border-b-2 hover:border-yellow-300 hover:text-yellow-300">JOBS</div></a>
+    <a href="{% url 'users:user-index' %}"><div class = "text-center p-10 ml-5 hover:border-t-2 hover:border-b-2 hover:border-yellow-300 hover:text-yellow-300">USERS</div></a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'users:profile' user.username %}"><div class = "text-center text-xl rounded-2xl bg-slate-700 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/30 hover:-translate-y-0.5 hover:bg-stone-800 hover:text-blue-500 transform transition text-blue-500 m-5 p-2 pt-6 pb-6 mb-4 justify-center place-items-center truncate">{{user.username}}</div></a>
+    {% else %}
+    <div class = "flex flex-col text-center p-10 ">
+        <a href="{% url 'users:login'%}"><div class = "mt-4 text-blue-300 ml-5 hover:border-t-2 hover:border-b-2 hover:border-blue-500 hover:text-blue-500"> LOGIN </div></a>
+        <div> </div>
+        <a href="{% url 'users:register'%}"><div class = "mt-4 text-blue-300 ml-5 hover:border-t-2 hover:border-b-2 hover:border-blue-500 hover:text-blue-500">REGISTER</div></a>
+    {% endif %}
+</nav>

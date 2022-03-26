@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>DJC | Jobs</title>
+{% endblock title %}
+
+{% block content %}
+<div class = "grid grid-cols-3">
+<div class = "col-span-2">
+<h2 class = "text-3xl"> Jobs </h2>
+<br>
+<p> Please select the category, the one concerned with the kind of jobs you wish to explore </p>
+</div>
+<div class = "grid place-content-center">
+<a class = "create-btn" href = "{% url 'jobs:create-job' %}">+ Create Job</a>
+</div>
+</div>
+
+<br>
+<ul>
+{% for field in field_choices %}
+    
+    <a href = "{% url "jobs:job-list" field.0 %}"><li class = "option">{{field.1}}</li></a>
+{% endfor %}
+
+</ul>
+{% endblock content %}

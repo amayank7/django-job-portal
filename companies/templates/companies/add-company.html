@@ -1,0 +1,25 @@
+{% load crispy_forms_tags %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+    <title>DJC | Add Comapny</title>
+</head>
+<body class = "bg-slate-700 h-screen font-mono text-xl">
+    <div class = "bg-yellow-200 m-8 rounded-xl p-6 text-2xl">Add Company</div>
+    <br>
+    <div class = "bg-yellow-200 m-8 rounded-xl p-6 text-xl">
+        <form method = "post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button class = "submit-btn" type = "submit">Add</button>
+            <br>
+        </form>
+    </div>
+</body>
+</html>

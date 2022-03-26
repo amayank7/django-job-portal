@@ -1,0 +1,7 @@
+{% if type_user == 'applicant' %}
+<button class = "submit-btn bg-green-300 shadow-green-500/50 text-green-500" type = "submit">Applied</button> 
+{% elif type_user == 'neither' %}
+<button id = "apply" class = "submit-btn" hx-get = "{% url 'jobs:job-apply' job.id %}" hx-target= "#apply" hx-swap = "innerHTML" type = "submit">Apply</button>
+{% else %}
+<div class = "text-red-500">You cannot apply to your own jobs.</div>
+{% endif %}

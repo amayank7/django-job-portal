@@ -1,0 +1,42 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}
+        <title>The Job Portal</title>
+    {% endblock title %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+    <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"></script>
+</head>
+
+<body class = " grid grid-cols-6 static w-full bg-slate-700 font-mono text-xl font-semibold leading-relaxed tracking-[.15em] h-screen mr-4">
+    <div class = "block grow-0 max-w-[18%] text-3xl h-screen sticky z-0">
+        {% include "nav.html" %}
+    </div>
+
+    <div class = "flex flex-col col-span-5 h-screen mt-6 ml-10 grow-0 pb-6">
+        <div class = "sticky">
+        {% include "search_bar.html" %}
+        </div>
+        <div class = "block overflow-y-auto text-stone-700 rounded-xl grow bg-yellow-200 m-2 p-6">
+            {% block content %}
+                <p class = "ml-5">
+                    Default Content. <br>
+                    If you're seeing then this page is yet to be modified.
+                </p>
+            {% endblock content %}
+    
+        </div>
+    
+    <footer style="h-30 w-full"></footer>
+    </div>
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+          event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+    </script>   
+</body>
+</html>

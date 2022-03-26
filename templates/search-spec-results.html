@@ -1,0 +1,93 @@
+<ul>
+    <p>The query "{{query}}" fetched {{count}} 
+        {% if category == 'all' %}results.
+        {% elif category == 'jobs' %}jobs.
+        {% elif category == 'users' %}users.
+        {% elif category == 'companies' %}companies.
+        {% endif %}</p>
+{% if category == 'all' %}
+	{% for result in results.jobs %}
+        <a href = "{% url 'jobs:job-detail' result.id %}">
+            <li class = "res">
+            <p class = "res-pretext">
+                Job
+            </p>
+            <p class = "res-main">
+                {{result.job_title|title}}
+            </p>
+            <p class = "res-post">
+                {{result.company|title}}
+            </p>
+        </li>
+        </a>
+    {% endfor %}
+    {% for result in results.users %}
+        <a href = "{% url 'users:profile' result.username %}">
+            <li class = "res">
+            <p class = "res-pretext">
+                User
+            </p>
+            <p class = "res-main">
+                {{result.username}}
+            </p>
+            <p class = "res-post">
+                {{result.get_full_name|title}}
+            </p>
+        </li>
+        </a>
+    {% endfor %}
+    {% for result in results.companies %}
+        <li class = "res">
+        <p class = "res-pretext">
+            Company
+        </p>
+        <p class = "res-main">
+            {{result.name|title}}
+        </p>
+    {% endfor %}
+
+    {% elif category == 'jobs' %}
+    {% for result in results %}
+        <a href = "{% url 'jobs:job-detail' result.id %}">
+            <li class = "res">
+            <p class = "res-pretext">
+                Job
+            </p>
+            <p class = "res-main">
+                {{result.job_title|title}}
+            </p>
+            <p class = "res-post">
+                {{result.company|title}}
+            </p>
+        </li>
+        </a>
+    {% endfor %}
+
+{% elif category == 'users'%}
+    {% for result in results %}
+        <a href = "{% url 'users:profile' result.username %}">
+            <li class = "res">
+            <p class = "res-pretext">
+                User
+            </p>
+            <p class = "res-main">
+                {{result.username}}
+            </p>
+            <p class = "res-post">
+                {{result.get_full_name|title}}
+            </p>
+        </li>
+        </a>
+        {% endfor %}
+{% elif category == 'companies'%}
+    {% for result in results %}
+        <li class = "res">
+            <p class = "res-pretext">
+                Company
+            </p>
+            <p class = "res-main">
+                {{result.name|title}}
+            </p>
+        {% endfor %}
+{% endif %}
+</ul>
