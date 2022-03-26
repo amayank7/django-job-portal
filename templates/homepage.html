@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>home</title>
+{% endblock title %}
+
+{% block content %}
+<div class = "p-6 text-3xl">Welcome to DJOBCONNECT</div>
+<br>
+<p>The portal offers users an interface to connect with recruiters and potential new hires. </p>
+<p>Users can apply for available jobs or hire people with a single account.</p>
+<br>
+{% if user.is_authenticated %}
+<p>Check out Jobs link for exploring the available jobs, or create one yourself. Manage all applications in the Users section. Make sure to update your profile, you can access your profile by clicking on the bottom-left link.</p>
+{% else %}
+<p> Login/Register to access all functionality of the portal.</p> 
+{% endif %}
+{% endblock content %}

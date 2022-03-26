@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>Register|DJC</title>
+{% endblock title %}
+
+{% block content %}
+<h2>Register</h2>
+<br>
+<form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <br>
+  <button type="submit" class = "bg-blue-300 hover:bg-blue-500 shadow-lg hover:shadow-blue-500/50 text-stone-700 px-6 py-2 rounded-lg">Register</button>
+</form>
+<br>
+{% endblock content %}

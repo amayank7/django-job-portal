@@ -1,0 +1,20 @@
+<h2 class = "text-2xl hover:font-extrabold">Job Applications</h2>
+<p>You currently have {{user.jobs_applied.count}} active applications.</p>
+<br><br>
+<p>
+<ul>
+{% for job in user.jobs_applied.all %}
+    <li class = "res">
+        <a class = "res-main" href = "{% url 'jobs:job-detail' job.id %}">{{job.job_title|title}}</a>
+        <ul><li class = "hover:font-semibold">Recruiter : <a href = "{% url 'users:profile' job.recruiter.username %}">{{job.recruiter}}</a></li>
+        <li><form hx-post = "{% url 'users:delete_application' %}" hx-target = "#main">
+            {% csrf_token %}
+            <input hidden name = "job_id" value = "{{job.id}}">
+            <button class = "delete-btn" type = "submit" id = "{{job.id}}">Delete Application</button>
+        </form>
+    </ul>
+    </li>
+    <br>
+{% endfor %}
+</ul>
+</p>

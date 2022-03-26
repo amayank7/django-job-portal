@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>Login|DJC</title>
+{% endblock title %}
+
+{% block content %}
+<h2>Log In</h2>
+<br><br>
+<form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <br>
+  <button type="submit" class = "bg-blue-300 hover:bg-blue-500 shadow-lg hover:shadow-blue-500/50 text-stone-700 px-6 py-2 rounded-lg">Log In</button>
+</form>
+{% endblock content %}

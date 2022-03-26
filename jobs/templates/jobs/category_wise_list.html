@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{field_chosen.1}} Jobs</title>
+{% endblock title %}
+
+{% block content%}
+<h1 class = "text-2xl">{{field_chosen|title}} Jobs</h1>
+<br><br>
+<ul>
+    {% for result in joblist %}
+    <a href = "{% url 'jobs:job-detail' result.id %}">
+        <li class = "res">
+        <p class = "res-pretext">
+            Job
+        </p>
+        <p class = "res-main">
+            {{result.job_title|title}}
+        </p>
+        <p class = "res-post">
+            {{result.company|title}}
+        </p>
+    </li>
+    </a>
+{% endfor %}
+</ul>
+<br><br>
+<table>
+</table>
+{% endblock content%}
