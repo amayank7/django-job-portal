@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+
+@tailwind utilities;
+
+@layer components {
+    .res{
+        @apply bg-blue-300 rounded-xl m-4 p-4 font-normal hover:shadow-lg hover:shadow-blue-500/50 hover:-translate-x-0.5 transition transform;
+    }
+    
+    .res-pretext{
+        @apply text-sm;
+    }
+    .res-main{
+        @apply text-2xl font-bold;
+    }
+    .res-post{
+        @apply text-lg;
+    }
+    .option {
+        @apply bg-slate-700 text-blue-300 hover:text-blue-500 rounded-xl m-4 p-4 font-normal hover:shadow-lg hover:shadow-slate-700/50 hover:-translate-x-0.5 transition transform;
+    }
+    .submit-btn {
+        @apply bg-slate-700 text-blue-300 hover:text-blue-500 shadow-lg hover:shadow-blue-500/50 hover:bg-slate-200 px-6 py-2 rounded-lg;
+    }
+    .delete-btn {
+        @apply text-red-500 hover:font-semibold;
+    }
+    .create-btn {
+        @apply border-2 text-center border-slate-700 text-slate-700 hover:bg-slate-700 hover:text-blue-500 text-2xl rounded-lg p-3 mr-4;
+    }
+}

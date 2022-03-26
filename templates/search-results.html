@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+Search results for "{{query}}"
+<br>
+
+<div id="tabs" hx-get = "{% url 'search-specific' 'all' %}?search={{query}}" hx-trigger="load after:100ms" hx-target="#tab-content" hx-swap="innerHTML">
+
+<form class="tab-list">
+    Search for : 
+    <button hx-get= "{% url 'search-specific' 'jobs' %}?search={{query}}" class="text-blue-400 hover:text-red-400" type = "submit">Jobs</button>
+    <button hx-get= "{% url 'search-specific' 'users' %}?search={{query}}" type = "submit" class = "text-blue-400 hover:text-red-400">Users</button>
+    <button hx-get= "{% url 'search-specific' 'companies' %}?search={{query}}" type = "submit" class = "text-blue-400 hover:text-red-400">Companies</button>
+    <button hx-get= "{% url 'search-specific' 'all' %}?search={{query}}" class="text-blue-400 hover:text-red-400" type = "submit">All</button>
+</form>
+
+<div class="tab-content" id="tab-content">
+
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>DJC | {{job.job_title}}</title>
+
+{% endblock title %}
+
+{% block content%}
+<h2 class = "text-3xl">{{job.job_title}}</h2>
+{% if job.company.logo %}<img src="{{job.company.logo.url}}" style = "height:120px; width:160px" alt = "{{job.company.name}}">
+{% endif %}
+<br>
+<h3>Company : {{job.company.name}}</h3>
+
+<br><br>
+    <p>
+        {{job.description}}
+    </p>
+<br>
+    {% if job.salary is not null%} 
+    <p>Salary : {{ job.salary }}</p>
+    {% endif %}
+    <p> Recruiter : <a class = "text-blue-500 font-normal hover:font-semibold" href = "{% url 'users:profile' job.recruiter %}">{% if job.recruiter.get_full_name  %}{{ job.recruiter.get_full_name }}{% else %}{{job.recruiter.username}}{% endif %}</a></p>
+<br>
+{% if user.is_authenticated %}
+<div id = "apply">
+    {% if type_user == 'applicant' %}
+    <button class = "submit-btn bg-green-300 shadow-green-500/50 text-green-500" type = "submit">Applied</button> 
+    {% elif type_user == 'neither' %}
+    <button class = "submit-btn" hx-get = "{% url 'jobs:job-apply' job.id %}" hx-target= "#apply" hx-swap = "innerHTML" type = "submit">Apply</button>
+    {% else %}
+    <div class = "font-light text-red-500">You cannot apply to your own jobs.</div>
+    {% endif %}
+</div>
+{% else %}
+<form action = {% url 'users:login' %}>
+<button class = "submit-btn" type = "submit">Apply</button>
+</form>
+{% endif %}
+<br><br>
+{% endblock content%}
