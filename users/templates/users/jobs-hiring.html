@@ -20,7 +20,8 @@
 <p>
 <ul>
 {% for job in user.jobs_hiring.all %}
-    <li class = "res" id = "job{{job.id}}">
+<div id = "job{{job.id}}">
+    <li class = "res">
         <a class = "res-main" href = "{% url 'jobs:job-detail' job.id %}">{{job}}</a>
         <form hx-post = "{% url 'users:delete_job' %}" hx-target = "#job{{job.id}}">
             <input hidden name = "job_id" value = "{{job.id}}">
@@ -41,6 +42,7 @@
             
             </ul>
     </li>
+</div>
     <br><br>
 {% endfor %}
 </ul>

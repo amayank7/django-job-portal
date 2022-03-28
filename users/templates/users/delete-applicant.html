@@ -1,15 +1,21 @@
-<a class = "text-blue-500" href = "{% url 'jobs:job-detail' job.id %}">{{job}}</a>
-        Applicants :
-            <ul>
-                {% for applicant in job.applicants.all %}
-                <li> <a href = "{% url 'users:profile' applicant.username %}">{{applicant.username}}</a>
-                        <form hx-post = "{% url 'users:delete_applicant' %}" hx-target = "#job{{job.id}}">
-                            {% csrf_token %}
-                            <input hidden name = "job_id" value = "{{job.id}}">
-                            <input hidden name = "applicant" value = {{applicant.username}}>
-                            <button type = "submit" id = "{{job.id}}">Delete Application</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            
-            </ul>
+<li class = "res">
+    <a class = "res-main" href = "{% url 'jobs:job-detail' job.id %}">{{job}}</a>
+    <form hx-post = "{% url 'users:delete_job' %}" hx-target = "#job{{job.id}}">
+        <input hidden name = "job_id" value = "{{job.id}}">
+        <button type = "submit" class = "delete-btn" id = "{{job.id}}">Delete Job</button>
+    </form>
+    <br>Applicants :
+        <ul>
+            {% for applicant in job.applicants.all %}
+            <li class = "option"> <a href = "{% url 'users:profile' applicant.username %}">{{applicant.username}}</a>
+                    <form hx-post = "{% url 'users:delete_applicant' %}" hx-target = "#job{{job.id}}" hx-swap = "outerHTML">
+                        {% csrf_token %}
+                        <input hidden name = "job_id" value = "{{job.id}}">
+                        <input hidden name = "applicant" value = {{applicant.username}}>
+                        <button type = "submit" class = "delete-btn" id = "{{job.id}}">Delete Application</button>
+                    </form>
+                </li>
+            {% endfor %}
+        
+        </ul>
+</li>
