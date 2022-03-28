@@ -30,7 +30,7 @@ A superuser can be created to access the Django admin site at "127.0.0.1:8000/ad
 python manage.py create superuser
 ```
 
-# In order to provide updation of Tailwind CSS classes on the server, while in development:
+## In order to provide updation of Tailwind CSS classes on the server, while in development:
 
 Make sure you have NodeJS / npm installed on the system, change the "NPM_BIN_PATH" variable in the settings.py file to the npm installation location.
 Open another terminal, cd to project directory:
